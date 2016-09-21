@@ -24,6 +24,8 @@ enum osx_event_mask
     Event_Mask_RCmd = 0x00000010,
 
     Event_Mask_Control = 0x00040000,
+    Event_Mask_LControl = 0x00000001,
+    Event_Mask_RControl = 0x00002000,
 };
 
 enum modifier_flag
@@ -41,6 +43,8 @@ enum modifier_flag
     Modifier_Flag_RCmd = (1 << 8),
 
     Modifier_Flag_Control = (1 << 9),
+    Modifier_Flag_LControl = (1 << 10),
+    Modifier_Flag_RControl = (1 << 11),
 };
 
 bool MouseDragKeyMatchesCGEvent(CGEventRef Event);
