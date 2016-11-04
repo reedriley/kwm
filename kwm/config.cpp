@@ -934,7 +934,7 @@ KwmParseWindowOption(tokenizer *Tokenizer)
             else if(Selector.Type == Token_Digit)
                 FocusWindowByID(ConvertStringToUint(std::string(Selector.Text, Selector.TextLength)));
             else
-                ReportInvalidCommand("Unknown selector '" + std::string(Selector.Text, Selector.TextLength) + "'");
+                FocusWindowByName(std::string(Selector.Text, Selector.TextLength));
         }
         else if(TokenEquals(Token, "fm"))
         {

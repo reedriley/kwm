@@ -22,6 +22,7 @@ bool FindClosestWindow(int Degrees, ax_window **ClosestWindow, bool Wrap);
 void CenterWindow(ax_display *Display, ax_window *Window);
 
 void FocusWindowByID(uint32_t WindowID);
+void FocusWindowByName(std::string AppName);
 void ToggleWindowFloating(uint32_t WindowID, bool Center);
 void ToggleFocusedWindowFloating();
 void ToggleFocusedWindowParentContainer();

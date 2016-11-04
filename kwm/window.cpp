@@ -1663,6 +1663,20 @@ void FocusWindowByID(uint32_t WindowID)
     }
 }
 
+void FocusWindowByName(std::string AppName)
+{
+    std::vector<ax_window*> Windows = AXLibGetAllKnownWindows();
+    for(int Index = 0; Index < Windows.size(); ++Index)
+    {
+        ax_window *Window = Windows[Index];
+        if(Window->Application->Name == AppName)
+        {
+            FocusWindowByID(Window->ID);
+            return;
+        }
+    }
+}
+
 void ClearMarkedWindow()
 {
     MarkedWindow = NULL;
