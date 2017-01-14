@@ -105,8 +105,12 @@ void ClearBorder(kwm_border *Border)
 {
     if(Border->BorderId)
     {
-        OverlayLibRemoveBorder(Border->BorderId);
-        Border->BorderId = 0;
+        OverlayLibUpdateBorder(
+            Border->BorderId,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0
+        );
     }
 }
 
