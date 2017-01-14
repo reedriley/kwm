@@ -60,11 +60,7 @@ CGEventCallback(CGEventTapProxy Proxy, CGEventType Type, CGEventRef Event, void 
         case kCGEventLeftMouseDragged:
         {
             if(HasFlags(&KWMSettings, Settings_MouseDrag))
-            {
-                CGPoint *Cursor = (CGPoint *) malloc(sizeof(CGPoint));
-                *Cursor = CGEventGetLocation(Event);
-                AXLibConstructEvent(AXEvent_LeftMouseDragged, Cursor, false);
-            }
+                AXLibConstructEvent(AXEvent_LeftMouseDragged, NULL, false);
         } break;
         case kCGEventRightMouseDown:
         {
@@ -85,11 +81,7 @@ CGEventCallback(CGEventTapProxy Proxy, CGEventType Type, CGEventRef Event, void 
         case kCGEventRightMouseDragged:
         {
             if(HasFlags(&KWMSettings, Settings_MouseDrag))
-            {
-                CGPoint *Cursor = (CGPoint *) malloc(sizeof(CGPoint));
-                *Cursor = CGEventGetLocation(Event);
-                AXLibConstructEvent(AXEvent_RightMouseDragged, Cursor, false);
-            }
+                AXLibConstructEvent(AXEvent_RightMouseDragged, NULL, false);
         } break;
 
         default: {} break;

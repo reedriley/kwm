@@ -122,8 +122,6 @@ EVENT_CALLBACK(Callback_AXEvent_LeftMouseUp)
 
 EVENT_CALLBACK(Callback_AXEvent_LeftMouseDragged)
 {
-    CGPoint *Cursor = (CGPoint *) Event->Context;
-
     if(DragMoveWindow)
     {
         DEBUG("AXEvent_LeftMouseDragged");
@@ -132,11 +130,12 @@ EVENT_CALLBACK(Callback_AXEvent_LeftMouseDragged)
          * was triggered on top of a window. Thus, we assume that the FocusedApplication
          * and its Focus can never be NULL here. */
 
+        CGPoint Cursor = GetCursorPos();
         ax_window *Window = FocusedApplication->Focus;
         if(AXLibHasFlags(Window, AXWindow_Floating))
         {
-            double X = Cursor->x - Window->Size.width / 2;
-            double Y = Cursor->y - Window->Size.height / 2;
+            double X = Cursor.x - Window->Size.width / 2;
+            double Y = Cursor.y - Window->Size.height / 2;
             AXLibSetWindowPosition(Window->Ref, X, Y);
         }
         else
@@ -148,7 +147,7 @@ EVENT_CALLBACK(Callback_AXEvent_LeftMouseDragged)
             if(WindowDisplay != CursorDisplay)
                 NewNode = WindowTree[CursorDisplay->Space->Identifier].RootNode;
             else
-                NewNode = GetTreeNodeForPoint(WindowTree[WindowDisplay->Space->Identifier].RootNode, Cursor);
+                NewNode = GetTreeNodeForPoint(WindowTree[WindowDisplay->Space->Identifier].RootNode, &Cursor);
 
             if(NewNode && NewNode != MarkedNode)
             {
@@ -157,8 +156,6 @@ EVENT_CALLBACK(Callback_AXEvent_LeftMouseDragged)
             }
         }
     }
-
-    free(Cursor);
 }
 
 internal resize_indicator_border
@@ -208,9 +205,9 @@ FreeResizedNodeBorders()
     while(!ResizeIndicatorBorders.empty())
     {
         kwm_border *Border = ResizeIndicatorBorders.back().Border;
+        ResizeIndicatorBorders.pop_back();
         CloseBorder(Border);
         free(Border);
-        ResizeIndicatorBorders.pop_back();
     }
 }
 
@@ -304,10 +301,11 @@ EVENT_CALLBACK(Callback_AXEvent_RightMouseUp)
 
 EVENT_CALLBACK(Callback_AXEvent_RightMouseDragged)
 {
-    CGPoint CursorPos = GetCursorPos();
-    local_persist  const double SplitRatioMinDifference = 0.002;
     if(DragResizeNode)
     {
+        CGPoint CursorPos = GetCursorPos();
+        local_persist double SplitRatioMinDifference = 0.002;
+
         DEBUG("AXEvent_RightMouseDragged");
         if(ResizeState.VerticalAncestor)
         {
@@ -329,9 +327,6 @@ EVENT_CALLBACK(Callback_AXEvent_RightMouseDragged)
 
         UpdateResizedNodeBorders();
     }
-
-    CGPoint *EventCursorPos = (CGPoint *) Event->Context;
-    free(EventCursorPos);
 }
 
 
