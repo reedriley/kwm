@@ -77,7 +77,18 @@ CompareAltKey(modifier_keys *A, modifier_keys *B)
 internal inline bool
 CompareControlKey(modifier_keys *A, modifier_keys *B)
 {
-    return (HasFlags(A, Modifier_Flag_Control) == HasFlags(B, Modifier_Flag_Control));
+    if(HasFlags(A, Modifier_Flag_Control))
+    {
+        return (HasFlags(B, Modifier_Flag_LControl) ||
+                HasFlags(B, Modifier_Flag_RControl) ||
+                HasFlags(B, Modifier_Flag_Control));
+    }
+    else
+    {
+        return ((HasFlags(A, Modifier_Flag_LControl) == HasFlags(B, Modifier_Flag_LControl)) &&
+                (HasFlags(A, Modifier_Flag_RControl) == HasFlags(B, Modifier_Flag_RControl)) &&
+                (HasFlags(A, Modifier_Flag_Control) == HasFlags(B, Modifier_Flag_Control)));
+    }
 }
 
 internal void
@@ -106,6 +117,10 @@ ParseModifiers(modifier_keys *Modifier, std::string KeySym)
             AddFlags(Modifier, Modifier_Flag_RShift);
         else if(Modifiers[ModIndex] == "ctrl")
             AddFlags(Modifier, Modifier_Flag_Control);
+        else if(Modifiers[ModIndex] == "lctrl")
+            AddFlags(Modifier, Modifier_Flag_LControl);
+        else if(Modifiers[ModIndex] == "rctrl")
+            AddFlags(Modifier, Modifier_Flag_RControl);
     }
 }
 
@@ -146,7 +161,14 @@ ModifierFromCGEvent(CGEventRef Event)
     }
 
     if((Flags & Event_Mask_Control) == Event_Mask_Control)
-        AddFlags(&Modifier, Modifier_Flag_Control);
+    {
+        if((Flags & Event_Mask_LControl) == Event_Mask_LControl)
+            AddFlags(&Modifier, Modifier_Flag_LControl);
+        else if((Flags & Event_Mask_RControl) == Event_Mask_RControl)
+            AddFlags(&Modifier, Modifier_Flag_RControl);
+        else
+            AddFlags(&Modifier, Modifier_Flag_Control);
+    }
 
     return Modifier;
 }
