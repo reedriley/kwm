@@ -2,6 +2,8 @@
 
 **NOTE:** The master branch is considered stable and can be used instead of the latest release version by people who wish to do so.
 
+**NOTE:** Main development focus has been shifted to a [new window manager](https://github.com/koekeishiya/chunkwm) based on plugin architecture.
+
 [**Kwm**](https://koekeishiya.github.io/kwm) started as a simple project to get true focus-follows-mouse support on OSX through event tapping.
 It is now a tiling window manager that represents windows as the leaves of a binary tree.
 *Kwm* supports binary space partitioned, monocle and floating spaces.
