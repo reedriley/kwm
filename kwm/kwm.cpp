@@ -10,7 +10,7 @@
 #include <getopt.h>
 
 #define internal static
-const char *KwmVersion = "Kwm Version 4.0.3";
+const char *KwmVersion = "Kwm Version 4.0.4";
 std::map<std::string, space_info> WindowTree;
 
 ax_display *FocusedDisplay = NULL;
