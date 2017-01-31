@@ -13,7 +13,8 @@ to their delivery to a foreground application.
 
 *Kwm* runs a local daemon to read messages and trigger functions.
 *Kwmc* is used to write to *Kwm*'s socket, and must be used when interacting with and configuring how *Kwm* works.
-[khd](https://github.com/koekeishiya/khd) can be used to create keybindings to perform some *Kwmc* command.
+[Khd](https://github.com/koekeishiya/khd) can be used to create keybindings to perform some *Kwmc* command.
+More info can be found [in the example dir](https://github.com/koekeishiya/kwm/tree/master/examples).
 
 For in depth information, [**click here**](https://koekeishiya.github.io/kwm).
 For sample configurations and other useful scripts, check out the [wiki](https://github.com/koekeishiya/kwm/wiki).
@@ -22,7 +23,7 @@ You can also drop by the channel **##kwm** on [freenode](http://webchat.freenode
 *Kwm* requires access to the OSX accessibility API.
 Tested on El Capitan (10.11.1 - 10.11.6).
 
-![img](https://cloud.githubusercontent.com/assets/6175959/18286612/e32b0238-7473-11e6-8f6b-630902d1fabf.png)
+![img](https://cloud.githubusercontent.com/assets/6175959/22448246/62db5a08-e758-11e6-9a87-cf9fc5c6f51b.png)
 For more screenshots, [click here.](https://github.com/koekeishiya/kwm/issues/2)
 
 The bar seen in the above screenshot can be found [here](https://github.com/koekeishiya/nerdbar.widget).
@@ -41,10 +42,18 @@ Manage Kwm using brew services
 
     brew services start kwm
 
-### Caveats
+## Configuration
 
-As of version 4.0.1 Kwm does not support keyboard shortcuts out of the box. More info can be found [in the example dir](https://github.com/koekeishiya/kwm/tree/master/examples).
+**NOTE**: [Documentation](https://koekeishiya.github.io/kwm/kwmc.html) of available commands
 
+The default configuration file is `$HOME/.kwm/kwmrc` and is a script that contains *kwmc* commands
+to be executed when *Kwm* starts.
+
+A different path can be used by running `kwm -c /path/to/kwmrc` or `kwm --config /path/to/kwmrc`,
+in which case it would probably be a good idea to set the [directories *Kwm* uses](https://github.com/koekeishiya/kwm/issues/191) for various settings.
+
+A sample config file can be found within the [examples](examples) directory.
+Any error that occur during parsing of the config file will be written to **stderr**.
 
 ## Development
 
@@ -76,20 +85,6 @@ Start *Kwm* on login through launchd
 Manually manage *Kwm* using launchctl
 
       launchctl load -w ~/Library/LaunchAgents/com.koekeishiya.kwm.plist
-
-## Configuration
-
-**NOTE**: [Documentation](https://koekeishiya.github.io/kwm/kwmc.html) of available commands
-
-The default configuration file is `$HOME/.kwm/kwmrc` and is a script that contains *kwmc* commands
-to be executed when *Kwm* starts.
-
-A different path can be used by running `kwm -c /path/to/kwmrc` or `kwm --config /path/to/kwmrc`,
-in which case it would probably be a good idea to set the [directories *Kwm* uses](https://github.com/koekeishiya/kwm/issues/191) for various settings.
-
-A sample config file can be found within the [examples](examples) directory.
-Any error that occur during parsing of the config file will be written to **stderr**.
-For more information, [click here](https://github.com/koekeishiya/kwm/issues/285#issuecomment-216703278).
 
 ### Donate
 *Kwm* will always be free and open source, however, some users have expressed interest in some way to show their support.
