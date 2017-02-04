@@ -1,6 +1,6 @@
 ## Description [![Build Status](https://travis-ci.org/koekeishiya/kwm.svg?branch=master)](https://travis-ci.org/koekeishiya/kwm)
 
-**NOTE:** The master branch is considered stable and can be used instead of the latest release version by people who wish to do so.
+**NOTE:** The master branch is considered stable and can be used instead of the latest release version.
 
 **NOTE:** Main development focus has been shifted to a [new window manager](https://github.com/koekeishiya/chunkwm) based on plugin architecture.
 
@@ -30,17 +30,30 @@ The bar seen in the above screenshot can be found [here](https://github.com/koek
 
 ## Install
 
-**NOTE:** Kwm requires ['Displays have separate spaces'](https://support.apple.com/library/content/dam/edam/applecare/images/en_US/osx/separate_spaces.png) to be enabled.
-
 A codesigned binary release is available through Homebrew
 
     brew install koekeishiya/formulae/kwm
 
-Add the example [`kwmrc`](https://github.com/koekeishiya/kwm/blob/master/examples/kwmrc) file to `~/.kwm/kwmrc` to get started.
-
 Manage Kwm using brew services
 
     brew services start kwm
+
+Copy the [example config](https://github.com/koekeishiya/kwm/blob/master/examples/kwmrc) to `~/.kwm/kwmrc` as described in the brew caveat section.
+
+## Usage
+
+**NOTE:** Kwm requires ['Displays have separate spaces'](https://support.apple.com/library/content/dam/edam/applecare/images/en_US/osx/separate_spaces.png) to be enabled.
+
+Set [directories used by *Kwm*](https://github.com/koekeishiya/kwm/issues/191) for various settings.
+
+Arguments:
+```
+-v | --version: Print version number to stdout
+    kwm -v
+
+-c | --config: Specify location of config file
+    kwm -c ~/.kwmrc
+```
 
 ## Configuration
 
@@ -49,15 +62,10 @@ Manage Kwm using brew services
 The default configuration file is `$HOME/.kwm/kwmrc` and is a script that contains *kwmc* commands
 to be executed when *Kwm* starts.
 
-A different path can be used by running `kwm -c /path/to/kwmrc` or `kwm --config /path/to/kwmrc`,
-in which case it would probably be a good idea to set the [directories *Kwm* uses](https://github.com/koekeishiya/kwm/issues/191) for various settings.
-
 A sample config file can be found within the [examples](examples) directory.
 Any error that occur during parsing of the config file will be written to **stderr**.
 
 ## Development
-
-**NOTE:** Kwm requires ['Displays have separate spaces'](https://support.apple.com/library/content/dam/edam/applecare/images/en_US/osx/separate_spaces.png) to be enabled.
 
 **NOTE:** Requires Xcode-8 command line tools
 
