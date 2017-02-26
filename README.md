@@ -38,7 +38,7 @@ Manage Kwm using brew services
 
     brew services start kwm
 
-Copy the [example config](https://github.com/koekeishiya/kwm/blob/master/examples/kwmrc) to `~/.kwm/kwmrc` as described in the brew caveat section.
+Copy the [example config](https://github.com/koekeishiya/kwm/blob/master/examples/kwmrc) to `~/.kwm/kwmrc` as described in the brew caveat section. If you'd like to use a different config file path: instead of using `brew services`, start *Kwm* using a custom `launchd` launch agent as described below in `Starting *Kwm* on login through launchd`.
 
 ## Usage
 
@@ -85,7 +85,11 @@ Remove temporary build artifacts
       make cleanlib     # remove axlib artifacts
       make cleankwm     # remove kwm artifacts
 
-Start *Kwm* on login through launchd
+Start *Kwm* on login using launchd as described below.
+
+## Starting *Kwm* on login through launchd
+
+Provide your own custom launch agent
 
       edit /path/to/kwm on line 9 of examples/com.koekeishiya.kwm.plist
       cp examples/com.koekeishiya.kwm.plist ~/Library/LaunchAgents/
