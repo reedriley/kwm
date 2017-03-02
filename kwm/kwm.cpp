@@ -10,7 +10,7 @@
 #include <getopt.h>
 
 #define internal static
-const char *KwmVersion = "Kwm Version 4.0.4";
+const char *KwmVersion = "Kwm Version 4.0.5";
 std::map<std::string, space_info> WindowTree;
 
 ax_display *FocusedDisplay = NULL;
@@ -39,7 +39,13 @@ CGEventCallback(CGEventTapProxy Proxy, CGEventType Type, CGEventRef Event, void 
         case kCGEventMouseMoved:
         {
             if(KWMSettings.Focus == FocusModeAutoraise)
-                AXLibConstructEvent(AXEvent_MouseMoved, NULL, false);
+            {
+                CGEventFlags Flags = CGEventGetFlags(Event);
+                if(!(Flags & Event_Mask_Alt))
+                {
+                    AXLibConstructEvent(AXEvent_MouseMoved, NULL, false);
+                }
+            }
         } break;
         case kCGEventLeftMouseDown:
         {
