@@ -475,6 +475,41 @@ void RotateBSPTree(int Deg)
     }
 }
 
+internal int
+EqualizeTree(tree_node *Tree)
+{
+    if(IsLeafNode(Tree))
+    {
+        return 1;
+    }
+
+    int LeftLeafs = EqualizeTree(Tree->LeftChild);
+    int RightLeafs = EqualizeTree(Tree->RightChild);
+    int TotalLeafs = LeftLeafs + RightLeafs;
+
+    if(LeftLeafs && RightLeafs)
+    {
+        Tree->SplitRatio = (float) LeftLeafs / TotalLeafs;
+    }
+
+    return TotalLeafs;
+}
+
+void EqualizeBSPTree(std::string Op)
+{
+    if(Op == "root")
+    {
+        ax_display *Display = AXLibMainDisplay();
+        space_info *SpaceInfo = &WindowTree[Display->Space->Identifier];
+        if(SpaceInfo->Settings.Mode == SpaceModeBSP && SpaceInfo->RootNode)
+        {
+            EqualizeTree(SpaceInfo->RootNode);
+            CreateNodeContainers(Display, SpaceInfo->RootNode, false);
+            ApplyTreeNodeContainer(SpaceInfo->RootNode);
+        }
+    }
+}
+
 void FillDeserializedTree(tree_node *RootNode, ax_display *Display, std::vector<uint32_t> *WindowsPtr)
 {
     std::vector<uint32_t> &Windows = *WindowsPtr;

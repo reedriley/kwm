@@ -1223,6 +1223,14 @@ KwmParseTreeOption(tokenizer *Tokenizer)
         else
             ReportInvalidCommand("Unknown command 'tree rotate " + std::string(Token.Text, Token.TextLength) + "'");
     }
+    else if(TokenEquals(Token, "equalize"))
+    {
+        token Token = GetToken(Tokenizer);
+        if(TokenEquals(Token, "root"))
+            EqualizeBSPTree(std::string(Token.Text, Token.TextLength));
+        else
+            ReportInvalidCommand("Unknown command 'tree equalize " + std::string(Token.Text, Token.TextLength) + "'");
+    }
     else if(TokenEquals(Token, "save"))
     {
         ax_display *Display = AXLibMainDisplay();

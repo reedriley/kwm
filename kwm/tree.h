@@ -7,6 +7,7 @@
 tree_node *CreateTreeFromWindowIDList(ax_display *Display, std::vector<uint32_t> *Windows);
 void FillDeserializedTree(tree_node *RootNode, ax_display *Display, std::vector<uint32_t> *WindowsPtr);
 void RotateBSPTree(int Deg);
+void EqualizeBSPTree(std::string Op);
 tree_node * FindFirstMinDepthLeafNode(tree_node *Root);
 tree_node *GetNearestLeafNodeNeighbour(tree_node *Node);
 tree_node *GetTreeNodeForPoint(tree_node *Node, CGPoint *Point);
