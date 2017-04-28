@@ -65,6 +65,20 @@ to be executed when *Kwm* starts.
 A sample config file can be found within the [examples](examples) directory.
 Any error that occur during parsing of the config file will be written to **stderr**.
 
+## Syntax highlighting for configuration files
+
+### vim
+
+Copy the vim syntax files to your vim config:
+```
+cp -r syntax/vim/* ~/.vim/
+```
+
+Or using [pathogen](https://github.com/tpope/vim-pathogen):
+```
+cp -r syntax/vim ~/.vim/bundle/kwm
+```
+
 ## Development
 
 **NOTE:** Requires Xcode-8 command line tools
