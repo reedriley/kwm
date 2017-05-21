@@ -308,6 +308,17 @@ EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowId)
     free(SockFD);
 }
 
+EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowOwner)
+{
+    int *SockFD = (int *) Event->Context;
+
+
+    ax_application *Application = AXLibGetFocusedApplication();
+    std::string Output = Application && Application->Focus ? Application->Name : "";
+    KwmWriteToSocket(Output, *SockFD);
+    free(SockFD);
+}
+
 EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowName)
 {
     int *SockFD = (int *) Event->Context;
@@ -344,6 +355,15 @@ EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowId)
     int *SockFD = (int *) Event->Context;
 
     std::string Output = MarkedWindow ? std::to_string(MarkedWindow->ID) : "-1";
+    KwmWriteToSocket(Output, *SockFD);
+    free(SockFD);
+}
+
+EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowOwner)
+{
+    int *SockFD = (int *) Event->Context;
+
+    std::string Output = MarkedWindow && MarkedWindow->Application ? MarkedWindow->Application->Name : "";
     KwmWriteToSocket(Output, *SockFD);
     free(SockFD);
 }

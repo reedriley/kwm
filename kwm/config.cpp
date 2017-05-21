@@ -1496,6 +1496,8 @@ KwmParseQueryOption(tokenizer *Tokenizer)
             token Token = GetToken(Tokenizer);
             if(TokenEquals(Token, "id"))
                 KwmConstructEvent(KWMEvent_QueryFocusedWindowId, KwmCreateContext(ClientSockFD));
+            else if(TokenEquals(Token, "owner"))
+                KwmConstructEvent(KWMEvent_QueryFocusedWindowOwner, KwmCreateContext(ClientSockFD));
             else if(TokenEquals(Token, "name"))
                 KwmConstructEvent(KWMEvent_QueryFocusedWindowName, KwmCreateContext(ClientSockFD));
             else if(TokenEquals(Token, "split"))
@@ -1526,6 +1528,8 @@ KwmParseQueryOption(tokenizer *Tokenizer)
             token Token = GetToken(Tokenizer);
             if(TokenEquals(Token, "id"))
                 KwmConstructEvent(KWMEvent_QueryMarkedWindowId, KwmCreateContext(ClientSockFD));
+            else if(TokenEquals(Token, "owner"))
+                KwmConstructEvent(KWMEvent_QueryMarkedWindowOwner, KwmCreateContext(ClientSockFD));
             else if(TokenEquals(Token, "name"))
                 KwmConstructEvent(KWMEvent_QueryMarkedWindowName, KwmCreateContext(ClientSockFD));
             else if(TokenEquals(Token, "split"))

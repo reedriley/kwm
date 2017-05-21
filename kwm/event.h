@@ -28,11 +28,13 @@ extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedBorder);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedBorder);
 
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowId);
+extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowOwner);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowName);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowSplit);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryFocusedWindowFloat);
 
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowId);
+extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowOwner);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowName);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowSplit);
 extern EVENT_CALLBACK(Callback_KWMEvent_QueryMarkedWindowFloat);
@@ -69,11 +71,13 @@ enum kwm_event_type
     KWMEvent_QueryMarkedBorder,
 
     KWMEvent_QueryFocusedWindowId,
+    KWMEvent_QueryFocusedWindowOwner,
     KWMEvent_QueryFocusedWindowName,
     KWMEvent_QueryFocusedWindowSplit,
     KWMEvent_QueryFocusedWindowFloat,
 
     KWMEvent_QueryMarkedWindowId,
+    KWMEvent_QueryMarkedWindowOwner,
     KWMEvent_QueryMarkedWindowName,
     KWMEvent_QueryMarkedWindowSplit,
     KWMEvent_QueryMarkedWindowFloat,
